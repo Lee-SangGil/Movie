@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="dept_dao" class="dao.DeptDAO">
+		<property name="sqlSession" ref="sqlSessionBean" />   <!-- context2에서 만들어논 세션객체를 참조할거다 -->
+				
+				<!-- servlet-context에서 dept_dao객체를 참조해준다. -->
+	</bean>
+	<bean id="sawon_dao" class="dao.SawonDAO"> <!-- 어떤 클래스를 객채화 할것이냐. -->
+		<constructor-arg ref="sqlSessionBean" />  <!-- 생성자에게 sqlSession 넣어야돼 -->
+	<!-- 	<property name="sqlSession" ref="sqlSessionBean" />    -->
+	
+	</bean>
+	
+	<bean id="gogek_dao" class="dao.GogekDAO">  <!-- GogekDAO클래스의 객체(gogek_dao) 생성 -->
+		<property name="sqlSession" ref="sqlSessionBean" /> <!-- 세터인젝션사용하여 sqlSessionBean을 
+																  참조하는 객체(sqlSession) 생성.
+																 context2에서 만들어논 객체가 하는 역할은? -->
+														
+	</bean>
+	
+	<bean id="member_dao" class="dao.MemberDAO">
+		<property name="sqlSession" ref="sqlSessionBean" />
+	
+	</bean>
+	
+</beans>

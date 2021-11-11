@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="u">
+	
+	<!-- 이메일 중복체크 -->
+	<select id="emailCheck" resultType="user" parameterType="java.lang.String">
+		select email from mall_user where email = #{email}
+	</select>
+	
+	<!-- 회원가입 -->
+	<select id="register" parameterType="user" >
+		insert into mall_user values(
+			seq_malluser_idx.nextVal,
+			#{email},
+			#{pwd},
+			#{name},
+			#{phone}
+		)
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="user" parameterType="java.util.HashMap">
+		select * from mall_user where email = #{email} and pwd = #{pwd}
+	</select>
+	
+	
+	
+	
+</mapper>
+
+
+

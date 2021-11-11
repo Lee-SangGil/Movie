@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+<style>
+			a{
+				color: black;
+				border-bottom: 3px;
+				margin: auto;
+			}
+			
+			h2{
+				margin-left: 450px;
+				padding-top: 60px;
+			}
+			
+			.head{
+				text-align:center;
+				font-size: 17px;
+			}
+					
+			.name{
+				float: right;
+			}
+			
+			table{
+				margin-left: 450px;
+			}
+			
+		</style>

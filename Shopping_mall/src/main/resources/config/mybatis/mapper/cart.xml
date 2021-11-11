@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+	
+	<!-- 장바구니 등록  -->
+	<select id="cart_insert" parameterType="cart">
+		insert into cart values(
+			seq_cart_idx.nextVal,
+			#{cart_email},
+			#{p_name},
+			#{count},
+			#{amount},
+			#{price}
+		)
+	</select>
+	
+	<!-- 장바구니 불러오기 -->
+	<select id="cart" resultType="cart">
+		select * from cart where cart_email = #{cart_email} order by cart_idx desc
+		
+	</select>
+	
+	<select id="cart_delete">
+		delete from cart where cart_idx = #{cart_idx}
+	</select>
+	
+	
+	
+	
+</mapper>
+
+
+

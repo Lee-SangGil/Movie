@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Kakao Login Test</h1>
+		<span th:if=${userId == null}>
+			<a>
+				<img src="img/kakao_login_medium_narrow.png">			
+			</a>
+		</span>
+		
+		<span th:if="${userId != null}">
+			<form>
+			
+			</form>
+		</span>
+		
+	</body>
+</html>

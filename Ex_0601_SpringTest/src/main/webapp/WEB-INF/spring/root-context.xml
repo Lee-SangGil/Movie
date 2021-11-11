@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<!-- 특정 클래스를 객체화 시켜주는 영역 -->
+	<!-- PersonVO p1 = new PersonVO(); -->
+	
+	<bean id="p1" class="vo.PersonVO">
+		<!-- p1.setName("홍길동"); -->
+		<property name="name" value="홍길동"/>
+		<property name="age" value="20"/>
+		<property name="tel" value="010-111-1111"/>
+		
+		<!-- 위와 같이 setter를 통해 데이터를 추가하는 구조를 setter injection이라고 한다. -->
+	</bean>
+
+	
+	<!-- constructor injection(생성자 인젝션) : 생성자를 통한 값의 주입 -->
+	<bean id="p2" class="vo.PersonVO">
+		<!-- p1 = new PersonVO("박길동", 25, "010-1111-1111"); -->
+		<constructor-arg value="박길동"/>
+		<constructor-arg value="25"/>
+		<constructor-arg value="010-2222-2222"/>
+		
+	</bean>
+	
+</beans>

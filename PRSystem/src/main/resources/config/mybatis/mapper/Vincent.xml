@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  mapper:  db접근 및 결과를 반환-->
+<mapper namespace="v">
+	<insert id="insert_vincent" parameterType="vincent">
+	
+	insert into VINCENT_USERS values( 
+		seq_vincent_idx.nextval, #{email}, #{pwd}, #{name}, #{pnum} 
+	)
+	
+	</insert>
+		
+	
+	<!--로그인  -->
+	<select id="login_vincent" parameterType="vincent" resultType="vo.VincentVO">
+	
+		SELECT EMAIL, PWD
+		FROM VINCENT_USERS
+		WHERE EMAIL = #{email}
+		AND PWD = #{pwd}
+		
+		
+
+	</select>
+</mapper>

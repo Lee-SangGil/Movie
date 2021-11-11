@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p">
+	
+	<!-- 상품리스트  -->
+	<select id="list" resultType="product">
+		select * from product order by p_idx asc
+	</select>
+	
+
+	<!-- 상품 상세 정보 -->
+	<select id="product_detail" resultType="product" parameterType="java.lang.String">
+		select * from product where p_name = #{p_name}
+	</select>
+	
+	
+	<!-- 상품 리뷰 -->
+	<select id="product_review" resultType="product_review" parameterType="java.lang.String">
+		select * from product_review where p_name = #{p_name} order by rev_idx desc
+	</select>
+	
+</mapper>
+
+
+

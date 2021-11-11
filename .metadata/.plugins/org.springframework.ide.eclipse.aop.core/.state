@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="Movie_go"/>
+<aop-project name="AndroidProject"/>
+<aop-project name="Movie"/>
+<aop-project name="PRSystem"/>
+<aop-project name="kakaologin"/>
+<aop-project name="Shopping_mall"/>
+<aop-project name="Ex_0610_SpringBoard"/>
+</aop-reference-model>

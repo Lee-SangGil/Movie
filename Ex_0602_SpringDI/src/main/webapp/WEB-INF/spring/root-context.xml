@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- BoardDaoimpl dao = new BoardDaoImpl(); 객체 생성-->
+	<bean id="dao" class="dao.BoardDaoImpl" />  <!-- BoardDaoImpl의 객체를 생성 -->
+	
+	<!-- BoardServiceImpl service = new BoardServiceImpl( dao ); -->
+		<bean id="serviceBean" class="service.BoardServiceImpl">
+		<!-- 생성자 인젝션 -->
+		<!-- ref를 통해 미리 만들어둔 dao객체를 참조 -->
+		<!-- 이러한 참조 개념을 DI(Dependency Injection : 의존성 주입) 이라고 한다 -->
+			<constructor-arg ref="dao" />
+		
+		</bean>
+		
+		
+</beans>

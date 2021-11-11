@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="a">
+	
+	<select id="user_insert" parameterType="and">
+		insert into test_user values(
+			seq_tuser_idx.nextVal,
+			#{id},
+			#{pwd}
+		)
+	</select>
+
+	<select id="login" parameterType="and" resultType="and">
+		select * from test_user where id=#{id} and pwd=#{pwd}
+	</select>
+</mapper>
+
+
+
+
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+	
+	<!-- 전체 게시물 조회 -->
+	<select id="board_list" resultType="board">
+		select * from board order by ref desc, step asc
+	</select>
+
+	<!-- 새 게시글 추가 -->
+	<select id="board_insert" parameterType="board">
+		insert into board values(
+			seq_board_idx.nextVal,
+			#{ name },
+			#{ subject },
+			#{ content },
+			#{ pwd },
+			#{ ip },
+			sysdate,
+			0,
+			seq_board_idx.currVal, --ref
+			0, --step
+			0, --depth
+			0 --del_info
+		)
+	</select>
+	
+	<!-- idx에 해당하는 게시글 한 건 조회 -->
+	<select id="board_one" resultType="board" parameterType="int">
+		select * from board where idx=#{idx}
+	</select>
+	
+	
+	<!-- 조회수 증가 -->
+	<select id="board_update_readhit" parameterType="int">
+		update board set readhit = readhit+1
+		where idx=#{idx}
+	</select>
+	
+	<!-- 댓글을 추가하기 위한 step값 증가 -->
+
+	<select id="board_update_step" parameterType="board">
+		update board set step = step + 1
+		where ref = #{ref} and step > #{step}
+	</select>
+
+	<!-- 댓글달기 -->
+	<select id="board_reply" parameterType="board">
+		insert into board values(
+			seq_board_idx.nextVal,
+			#{name},
+			#{subject},
+			#{content},
+			#{pwd},
+			#{ip},
+			sysdate,
+			0,
+			#{ref},
+			#{step},
+			#{depth},
+			0 -- del_info
+		)
+	</select>
+
+	<!-- 게시글 삭제를 위한 원글 조회 (idx와 pwd가 일치하는 게시글 조회) -->
+	<select id="board_idx_pwd" resultType="board" parameterType="java.util.HashMap">
+		select * from board where idx=#{idx} and pwd=#{pwd}
+	</select>
+	
+	<!-- 게시글 삭제 업데이트 -->
+	<select id="board_del_update" parameterType="board">
+		update board set
+		subject =  #{subject},
+		name = #{name},
+		del_info = -1
+		where idx = #{idx}
+	</select>
+
+	<!-- 페이지에 따른 게시물 조회 -->
+	<select id="board_list_page" parameterType="java.util.HashMap" resultType="board">
+	
+		select * from
+		(select rank() over(order by ref desc, step asc) no, b.*
+		from board b)
+		where no between #{start} and #{end}
+	
+	</select>
+
+	<!-- 하단 페이지메뉴의 수를 결정하기 위해 전체 게시물의 갯수를 조회 -->
+	<select id="board_count" resultType="int">
+		select count(*) from board
+	</select>
+
+</mapper>
+
+
+
+
+
